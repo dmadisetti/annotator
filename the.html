@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <title>English 101 "Annotator"</title>
+    <style>
+      body {
+        min-width: 297px;
+        overflow-x: hidden;
+        padding:30px;
+      }
+
+      input{
+        display:none;
+      }
+
+      label {
+        margin: 5px;
+        padding: 20px 30px;
+        border: 2px solid white;
+        vertical-align: middle;
+        border-radius: 5px;
+      }
+
+      input[type="radio"]:checked + label{
+        border: 2px solid black;
+      }
+
+      label[for="pink"]{
+        background-color:#ffccff;
+      }
+      label[for="green"]{
+        background-color:#66ff99;
+      }
+      label[for="blue"]{
+        background-color:#6699ff;
+      }
+      label[for="yellow"]{
+        background-color:#ffff99;
+      }
+    </style>
+
+
+    <script src="the.js"></script>
+  </head>
+  <body>
+  <input type="radio" name="color" value="#ffccff" id="pink"/><label for="pink"></label>
+  <input type="radio" name="color" value="#66ff99" id="green"/><label for="green"></label>
+  <input type="radio" name="color" value="#6699ff" id="blue"/><label for="blue"></label>
+  <input type="radio" name="color" value="#ffff99" id="yellow"/><label for="yellow"></label>
+  </body>
+</html>
+
