@@ -21,3 +21,7 @@ TODO:
 	- Create Options page.
 	- Document the jazz out of it.
 	- Share with the world.
+
+Very Poor Quality Video of it Working
+-----
+http://www.youtube.com/watch?v=QxyZE7bWc50
