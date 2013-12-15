@@ -15,8 +15,9 @@ Change color of you higlighter with the icon in the upper right of your browser.
 
 TODO:
 
-	- Create actual highlighting functionality.
-	- Create Annotation functionality.
+	- Clean up regex for across multiple tags
+	- Examine bugs
+	- Option to delete
 	- Create Options page.
 	- Document the jazz out of it.
 	- Share with the world.

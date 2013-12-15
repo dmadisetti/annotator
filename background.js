@@ -20,7 +20,20 @@ ctx.fill();
 image=ctx.getImageData(0, 0, 19, 19);
 chrome.browserAction.setIcon({imageData:image});
 
-chrome.contextMenus.create({type:"normal",title:"Highlight",onclick:function(info){console.log(info);},contexts:['selection']});
+
+chrome.contextMenus.create({type:"normal",title:"Highlight",onclick:function(info){
+	var page = info.pageUrl
+		.split('://')[1]
+		.split('#')[0]
+		.split('index.html')[0]
+		.split('index.htm')[0]
+		.split('index.php')[0];
+	chrome.tabs.getSelected(null, function(tab) {
+		chrome.tabs.sendRequest(tab.id, {method: "getData",info:info,color:window.localStorage.color}, function(response) {
+			window.localStorage[page + response.hash] = response.data;
+		});
+	});
+},contexts:['selection']});
 
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
@@ -38,6 +51,19 @@ chrome.runtime.onMessage.addListener(
 				var value = request.values[i];
 				response[value] = window.localStorage[value];
 				i++;
+			}
+			sendResponse(response);
+		}else if(request.type == 'getPage'){
+			var response = {hashes:[]};
+			for (var update in window.localStorage) {
+				var details = update.split('@')
+				, page = details[0];
+				console.log(page);
+				console.log(request.value);
+				if(page != request.value) continue;
+				var hash = details[1]
+				, content = window.localStorage[update];
+				response.hashes.push({'hash':hash,'update':content});
 			}
 			sendResponse(response);
 		}
